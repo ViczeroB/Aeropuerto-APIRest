@@ -2,7 +2,7 @@ from .aeropuerto import create_aeropuerto, get_aeropuerto, get_aeropuertos, upda
 from .boleto import create_boleto, get_boleto, get_boletos, update_boleto, delete_boleto
 from .copiloto import create_copiloto, get_copiloto, get_copilotos, update_copiloto, delete_copiloto
 from .piloto import create_piloto, get_piloto, get_pilotos, update_piloto, delete_piloto
-from .vuelo import get_pasajeros_by_vuelo, create_vuelo, get_vuelo, get_vuelos, update_vuelo, delete_vuelo
+from .vuelo import get_pasajeros_by_vuelo, create_vuelo, get_vuelo, get_vuelos, update_vuelo, delete_vuelo, get_vuelo_details
 from .avion import create_avion, get_avion, get_aviones, update_avion, delete_avion
 from .avioneta import create_avioneta, get_avioneta, get_avionetas, update_avioneta, delete_avioneta
 from .equipaje import create_equipaje, get_equipaje, get_equipajes, update_equipaje, delete_equipaje

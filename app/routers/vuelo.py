@@ -44,8 +44,9 @@ def read_pasajeros_by_vuelo(vuelo_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="No se encontraron pasajeros para este vuelo")
     return pasajeros
 
-# Puedes agregar más endpoints relacionados con vuelos aquí, por ejemplo:
-# - Obtener todos los vuelos de un día específico
-# - Obtener vuelos por origen o destino
-# - Obtener detalles del vehículo aéreo asociado a un vuelo
-# - etc.
+@router.get("/vuelos/{vuelo_id}/details", response_model=schemas.VueloDetails)
+def read_vuelo_details(vuelo_id: int, db: Session = Depends(get_db)):
+    vuelo = crud.get_vuelo_details(db, vuelo_id=vuelo_id)
+    if vuelo is None:
+        raise HTTPException(status_code=404, detail="Vuelo no encontrado")
+    return vuelo

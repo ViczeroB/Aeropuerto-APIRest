@@ -1,6 +1,6 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from .. import models, schemas
-from typing import List
+from typing import List, Optional
 
 def get_vuelo(db: Session, vuelo_id: int):
     return db.query(models.Vuelo).filter(models.Vuelo.idVuelo == vuelo_id).first()
@@ -34,3 +34,14 @@ def delete_vuelo(db: Session, vuelo_id: int):
 
 def get_pasajeros_by_vuelo(db: Session, vuelo_id: int) -> List[models.Pasajero]:
     return db.query(models.Pasajero).join(models.Boleto).filter(models.Boleto.idVuelo == vuelo_id).all()
+
+def get_vuelo_details(db: Session, vuelo_id: int) -> Optional[models.Vuelo]:
+    return db.query(models.Vuelo)\
+            .join(models.VehiculoAereo)\
+            .join(models.Tripulacion)\
+            .filter(models.Vuelo.idVuelo == vuelo_id)\
+            .options(
+                joinedload(models.Vuelo.vehiculoAereo),
+                joinedload(models.Vuelo.tripulaciones)
+            )\
+            .first()

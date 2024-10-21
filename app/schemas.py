@@ -234,3 +234,17 @@ class Boleto(BoletoBase):
 
     class Config:
         from_attributes = True
+
+# VueloDetails
+class VueloDetails(BaseModel):
+    idVuelo: int
+    origen: str
+    destino: str
+    duracion: float
+    horaSalida: datetime
+    horaLlegada: datetime
+    vehiculoAereo: VehiculoAereoBase
+    tripulaciones: List[TripulacionBase]
+
+    class Config:
+        from_attributes = True
